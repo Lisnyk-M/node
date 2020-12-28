@@ -6,7 +6,7 @@ const contactValidator = require('../validators/validator.contact');
 class ContactsController {
 
     getContacts(req, res) {
-        return res.status(200).send({ message: 'getContacts is worked', data: req.contacts })
+        return res.status(200).send({ message: 'getContacts is worked', data: req.contacts });
     }
 
     getContactById(req, res) {
@@ -35,22 +35,22 @@ class ContactsController {
             if (existedContact) {
                 return res
                     .status(409)
-                    .send({ message: 'User already exists.' })
+                    .send({ message: 'User already exists.' });
             }
 
             req.contacts.push({ id: maxId + 1, ...req.body });
-            let result = await ContactsService.createContact(req.contacts)
+            let result = await ContactsService.createContact(req.contacts);
 
             if (result) return res.status(200).send(result)
             else
                 return res
                     .status(500)
-                    .send({ message: 'Unable create contact.' })
+                    .send({ message: 'Unable create contact.' });
         }
         else
             return res
                 .status(400)
-                .send({ message: validate })
+                .send({ message: validate });
     }
 
     async updateContact(req, res) {
@@ -60,10 +60,10 @@ class ContactsController {
             if (!existedContact) {
                 return res
                     .status(404)
-                    .send({ message: 'Contact not found.' })
+                    .send({ message: 'Contact not found.' });
             }
 
-            const updatedContact = { ...existedContact, ...req.body }
+            const updatedContact = { ...existedContact, ...req.body };
 
             const updatedContacts = req.contacts.map(contact => {
                 return contact.id != req.params.contactId ? contact : updatedContact;
@@ -75,11 +75,11 @@ class ContactsController {
             else
                 return res
                     .status(500)
-                    .send({ message: 'Unable create contact.' })
+                    .send({ message: 'Unable create contact.' });
         } else
             return res
                 .status(400)
-                .send({ message: 'Bad request.' })
+                .send({ message: 'Bad request.' });
     }
 
 
@@ -90,21 +90,21 @@ class ContactsController {
             if (!existedContact) {
                 return res
                     .status(404)
-                    .send({ message: 'Contact not found.' })
+                    .send({ message: 'Contact not found.' });
             }
             const filteredContacts = req.contacts.filter(contact => contact.id != req.params.contactId);
             let result = await ContactsService.deleteContact(filteredContacts);
 
-            if (result) return res.status(200).send(result)
+            if (result) return res.status(200).send(result);
             else
                 return res
                     .status(500)
-                    .send({ message: 'Unable create contact.' })
+                    .send({ message: 'Unable create contact.' });
         } else
             return res
                 .status(400)
-                .send({ message: 'Bad request.' })
+                .send({ message: 'Bad request.' });
     }
 }
 
-module.exports = new ContactsController()
+module.exports = new ContactsController();

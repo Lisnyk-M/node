@@ -1,9 +1,12 @@
-const fs = require('fs')
+const fs = require('fs');
+const path = require('path');
+
+const pathToDb = path.join(__dirname, '..', '..', 'db', 'contacts.json');
 
 class ContactsService {
     getContacts() {
         return new Promise((res, rej) => {
-            fs.readFile('./src/contacts.json', (err, data) => {
+            fs.readFile(pathToDb, (err, data) => {
                 if (err) {
                     console.log('err: ', err);
                     return res(false)
@@ -28,15 +31,15 @@ class ContactsService {
     }
 
     createContact(data) {
-        return this.fsWriteFile (data, './src/contacts.json', 'Contact created.');
+        return this.fsWriteFile (data, pathToDb, 'Contact created.');
     }
 
     updateContact(data) {
-        return this.fsWriteFile (data, './src/contacts.json', 'Contact updated.');
+        return this.fsWriteFile (data, pathToDb, 'Contact updated.');
     }
 
     deleteContact(data) {
-        return this.fsWriteFile (data, './src/contacts.json', 'Contact deleted.');
+        return this.fsWriteFile (data, pathToDb, 'Contact deleted.');
     }
 }
 
