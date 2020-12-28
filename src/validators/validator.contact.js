@@ -7,7 +7,6 @@ module.exports = contactValidator = async (res, data, schema) => {
         if (error) {
             return error.details.map(el => el.message)[0];
         }
-
     }
     catch (err) {
         console.log(err);

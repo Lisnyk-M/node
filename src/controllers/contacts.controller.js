@@ -4,7 +4,6 @@ const contactSchema = require('../schemas/contact.schema');
 const contactValidator = require('../validators/validator.contact');
 
 class ContactsController {
-
     getContacts(req, res) {
         return res.status(200).send({ message: 'getContacts is worked', data: req.contacts });
     }
@@ -55,7 +54,6 @@ class ContactsController {
 
     async updateContact(req, res) {
         if (req.body) {
-
             const existedContact = req.contacts.find(contact => contact.id == req.params.contactId);
             if (!existedContact) {
                 return res
@@ -82,10 +80,8 @@ class ContactsController {
                 .send({ message: 'Bad request.' });
     }
 
-
     async deleteContact(req, res) {
         if (req.params.contactId) {
-
             const existedContact = req.contacts.find(contact => contact.id == req.params.contactId);
             if (!existedContact) {
                 return res

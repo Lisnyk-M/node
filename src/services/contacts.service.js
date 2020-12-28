@@ -11,7 +11,7 @@ class ContactsService {
                     console.log('err: ', err);
                     return res(false)
                 }
-                return res(JSON.parse(data))
+                return res(JSON.parse(data));
             })
         })
     }
@@ -22,9 +22,8 @@ class ContactsService {
                 fileName,
                 JSON.stringify(data, null, '  '),
                 (err, response) => {
-                    if (err) return res(false)
-
-                    return res({ message: message })
+                    if (err) return res(false);
+                    return res({ message: message });
                 }
             )
         })        
