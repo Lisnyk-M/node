@@ -1,7 +1,7 @@
-###Working page:###  
+### Working page:  
 https://lisnyk-m-hw-04.herokuapp.com/
 
-###Endpoints:###  
+### Endpoints:  
 POST: /auth/register  
 POST: /auth/login  
 POST: /auth/logout  Authorization: "Bearer token"  
