@@ -1,13 +1,11 @@
-Working page:
+###Working page:###  
 https://lisnyk-m-hw-04.herokuapp.com/
 
-Endpoints:  
+###Endpoints:###  
 POST: /auth/register  
 POST: /auth/login  
-POST: /auth/logout  
-    Authorization: "Bearer token"  
-GET: /users/current  
-    Authorization: "Bearer token"  
+POST: /auth/logout  Authorization: "Bearer token"  
+GET: /users/current  Authorization: "Bearer token"  
 PATCH: /users  
 
 GET: /contacts  
@@ -15,7 +13,3 @@ GET: /contacts/:contactId
 POST: /contacts  
 PATCH: /contacts/:contactId  
 DELETE: /contacts/:contactId  
-<ul>
-<li>Line 1</li>
-<li>Line 2</li>
-</ul>
