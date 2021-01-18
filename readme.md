@@ -13,3 +13,6 @@ GET: /contacts/:contactId
 POST: /contacts  
 PATCH: /contacts/:contactId  
 DELETE: /contacts/:contactId  
+
+### Query:  
+page, limit, sub ["free", "pro", "premium"]
