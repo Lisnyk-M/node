@@ -33,9 +33,9 @@ app.use(morgan('combined'));
 app.use('/', contactsRouter);
 app.use('/', userRoutes);
 app.use('/', filesRoutes);
-app.use('/api/stats', (req, res) => {
-    res.json({ stats: true });
-})
+// app.use('/api/stats', (req, res) => {
+//     res.json({ stats: true });
+// })
 app.use( express.static('build'));
 app.use('/images', express.static('./public/images'));
 app.use('/download', express.static('./uploads'));
