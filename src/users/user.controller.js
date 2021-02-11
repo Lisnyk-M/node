@@ -14,7 +14,7 @@ const path = require('path');
 const { v4 } = require('uuid');
 const { NotFoundError, UnauthorizedError } = require('../helpers/errors.constructor');
 const Token = require('../token/Token');
-const sendVerificationEmail = require('../helpers/sendMailer');
+const sendVerificationEmail = require('../helpers/sendMailer_v2');
 
 
 const SALT_FACTOR = 8;

@@ -6,18 +6,20 @@ const { NODEMAILER_USER, NODEMAILER_PASSWORD, SITE_DOMAIN } = process.env;
 async function sendVerificationEmail(recipientEmail, token) {
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'https://esputnik.com/api/v1/message/email',
+        // host: 'smtp.gmail.com',
         port: 587,
         secure: false,
         auth: {
             user: NODEMAILER_USER,
-            pass: NODEMAILER_PASSWORD
+            // pass: NODEMAILER_PASSWORD
+            pass: '98EE73DAC4B09A8EB34E33DEBD58F933'
         }
     });
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-        from: '"Fred Foo 👻"' + `${NODEMAILER_USER}`, // sender address
+        from: '"hw-06"' + `${NODEMAILER_USER}`, // sender address
         to: recipientEmail,
         subject: "Hello ✔", // Subject line
         text: "Hello world?", // plain text body
