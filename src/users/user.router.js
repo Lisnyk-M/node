@@ -7,7 +7,7 @@ const userValidate = require('./user.validate');
 
 
 usersRouter.get('/', (req, res, next) => {
-    res.sendFile(path.join( __dirname, '../../index.html' ));
+    // res.sendFile(path.join( __dirname, '../../index.html' ));
 });
 
 usersRouter.post('/auth/register', userController.registerUser);
