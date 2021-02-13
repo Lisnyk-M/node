@@ -27,7 +27,7 @@ const cupload = uploadAvatarMiddleware.single('avatar');
 filesRouter.patch('/users/avatars', userAuthorise, function (req, res) {
     cupload(req, res, async function (err) {
         if (err) {
-            return res.status(400).json({ message: "error" });
+            return res.status(400).json({ message: err });
         }
 
         const { dir, name, base } = path.parse(req.user.avatarURL); //in DB

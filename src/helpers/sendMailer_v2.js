@@ -1,7 +1,8 @@
 const axios = require('axios').default;
 
 require('dotenv').config();
-const { NODEMAILER_USER, NODEMAILER_PASSWORD, SITE_DOMAIN } = process.env;
+const { NODEMAILER_USER, NODEMAILER_PASSWORD, SITE_DOMAIN, SITE_DOMAIN_LOCAL, npm_lifecycle_event } = process.env;
+const domain = npm_lifecycle_event === 'dev' ? SITE_DOMAIN_LOCAL : SITE_DOMAIN;
 
 const sendMailer = async (recipientEmail, token) => {
     const html = `<html>
@@ -11,7 +12,7 @@ const sendMailer = async (recipientEmail, token) => {
          </style>
      </head>
      <div>
-         <a class="one" href="${SITE_DOMAIN}/auth/verify/${token}">Welcome to our application. You can ferify you email by click this link</a>
+         <a class="one" href="${domain}/auth/verify/${token}">Welcome to our application. You can ferify you email by click this link</a>
      </div>
 </html>`;
     return await axios({

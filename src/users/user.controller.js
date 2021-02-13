@@ -2,8 +2,6 @@ const crypto = require('crypto');
 const { ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const userModel = require('./user.model');
-const userDao = require('../../dao/user.Dao');
 const contactValidator = require('../validators/contact.validator');
 const userRegisterSchema = require('../schemas/user.register.schema');
 // const idSchema = require('../schemas/id.schema');
@@ -13,6 +11,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { v4 } = require('uuid');
 const { NotFoundError, UnauthorizedError } = require('../helpers/errors.constructor');
+const userModel = require('../users/user.model');
 const Token = require('../token/Token');
 const sendVerificationEmail = require('../helpers/sendMailer_v2');
 
@@ -20,9 +19,9 @@ const sendVerificationEmail = require('../helpers/sendMailer_v2');
 const SALT_FACTOR = 8;
 
 class UserController {
-    async getUserById(req, res/*, next */) {
+    async getUserById(req, res) {
         try {
-            const user = await userDao.getById(req.user._id);
+            const user = await userModel.getById(req.user._id);
             if (!user) {
                 res.status(400)
                 return res.json({ message: `No user with id ${req.user._id} not found.` });
@@ -30,9 +29,7 @@ class UserController {
             res.json({ user });
         }
         catch (err) {
-            // next(err);
         }
-        // next();
     };
 
     async registerUser(req, res, next) {
@@ -136,7 +133,6 @@ class UserController {
             }
 
             const token = jwt.sign({ id: req.existingUser._id }, process.env.JWT_SECRET, {
-                // expiresIn: 2 * 24 * 60 * 60     //two days
                 expiresIn: '2 days'
             });
 
@@ -207,32 +203,7 @@ class UserController {
             next(err);
         }
         next();
-    }
-
-    async updateAvatar(req, res, next) {
-        try {
-            const av = req.body.avatar;
-            if (!av) {
-                // throw new UnauthorizedError("User not authorized");
-                console.log('avatar is required');
-            }
-
-            console.log('av: ', av);
-            const update = await userModel.findByIdAndUpdate(
-                req.user._id,
-                { $set: { subscription: req.body.subscription } },
-                { new: true, runValidators: true }
-            );
-            return res.status(200).send({
-                email: update.email,
-                subscription: update.subscription
-            });
-        }
-        catch (err) {
-            next(err);
-        }
-        next();
-    }
+    }    
 }
 
 module.exports = new UserController();
