@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const contactValidator = require('../validators/contact.validator');
 const userRegisterSchema = require('../schemas/user.register.schema');
-// const idSchema = require('../schemas/id.schema');
 const { json } = require('express');
 const generateAvatar = require('../helpers/avatarGenerator');
 const fs = require('fs').promises;
@@ -14,7 +13,6 @@ const { NotFoundError, UnauthorizedError } = require('../helpers/errors.construc
 const userModel = require('../users/user.model');
 const Token = require('../token/Token');
 const sendVerificationEmail = require('../helpers/sendMailer_v2');
-
 
 const SALT_FACTOR = 8;
 
