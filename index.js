@@ -42,7 +42,6 @@ app.use('/download', express.static('./uploads'));
 app.use('/download', express.static('./tmp'));
 app.use('/upload', (req, res, next) => {
     res.sendFile(__dirname + "/index.html");
-    console.log('__dirname: ', __dirname);
 });
 app.use(logErrors);
 

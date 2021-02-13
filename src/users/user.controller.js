@@ -51,7 +51,6 @@ class UserController {
             }
 
             const newContact = await userModel.create(req.body);
-            console.log('newContact: ', newContact);
 
             if (newContact) {
                 const verificationToken = await crypto.randomBytes(16).toString('hex');

@@ -26,7 +26,6 @@ async function authorize(req, res, next) {
             { _id: userId }
         );
         if (!user || user.token !== token) {
-            // console.log('user: ', user);
             throw new NotFoundError("User not found");
         }
 

@@ -11,7 +11,6 @@ const multer = require('multer');
 
 const storageAvatar = multer.diskStorage({
     destination: (req, file, cb) => {
-        console.log('req.user: ', req.user);
         cb(null, path.resolve('./uploads'));
     },
     filename: (req, file, cb) => {
@@ -32,8 +31,6 @@ filesRouter.patch('/users/avatars', userAuthorise, function (req, res) {
 
         const { dir, name, base } = path.parse(req.user.avatarURL); //in DB
         const xPath = path.join(req.headers.host, '/images', base);
-        console.log('xPath: ', xPath);
-        console.log('name: ', name);
 
         //move file from uploads dir to public/images dir
         await fs.rename(path.join(__dirname, `../../uploads/${req.user.uploadedImageName}`),
