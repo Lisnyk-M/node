@@ -1,5 +1,5 @@
 ### Working page:  
-https://lisnyk-m-hw-04.herokuapp.com/
+https://lisnyk-m-hw-06.herokuapp.com/
 
 ### Endpoints:  
 POST: /auth/register  
